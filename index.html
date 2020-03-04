@@ -1,0 +1,235 @@
+<html>
+<head>
+ <title>InfraLink</title>
+ <link rel="shortcut icon" type="images/jpg"href="images/logo.jpg">
+ <meta charset="utf-8">
+
+<link href="css/style.css" rel="stylesheet" type="text/css">
+<link rel='stylesheet' id='fontawesome-css' href='https://use.fontawesome.com/releases/v5.0.1/css/all.css?ver=4.9.1' type='text/css' media='all'>
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+
+
+<!-- jQuery library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+
+
+<script>
+ 
+$(window).scroll(function(){
+        var top = $(window).scrollTop();
+        if(top>=60){
+        $("header").addClass('secondary')
+        }
+        else if($("header").hasClass('secondary')){
+            $("header").removeClass('secondary');
+        }
+    
+    });
+    </script>
+
+<script>
+function facebookCite(click) {
+var url = "https://www.facebook.com/infralinkab";
+window.open(url);
+}
+
+function linkedinCite(linkedin){
+var url = "https://www.linkedin.com/company/infralinkab";
+window.open(url);
+}      
+  
+</script>
+
+
+</head>
+
+<body>
+    <header>
+        <div class="container">
+        <div class="row"> 
+            <a href="" class="logo"><img src="images/logo_W.png"> </a> 
+            <nav>
+                <ul>
+                    <li><a href="#Hem"  >Hem</a></li>
+                    <li><a href="#OmOss" >Om oss</a></li>
+                    <li><a href="#Kontakt">Kontakt</a></li>
+
+                </ul>
+            </nav>
+        </div>
+    </div>
+
+    </header>
+
+    <section class="infraLink" id="Hem">
+       <ul class="first">
+        <li class="first-page">
+           <h2>Er nya leverantör av projekledning, maskinresurser & <br>tekniker till järnväg & markarbeten</h2>
+        </li>
+      </ul>       
+
+    </section>
+
+    <section class="intro-white" id="OmOss">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12 text-center">
+                    <h2>OM OSS</h2>
+                    
+                        <p>Infralink grundades 2019, med ambitionen att bli marknadens vassaste partner <br> för alla med behov av kompetens inom anläggning, mark, spår och infrastruktur. </p> 
+                            <p> Med särskild fokus på arbeten inom järnväg och elektrifiering av <br> biltrafiken vill vi bidra till att utveckla ett hållbart Sverige.
+                        </p>
+                </div>
+            </div>
+        </div>
+
+    </section>
+
+        <section class="slider">
+
+            <div class="slide hi-slide">
+                
+                <div class="hi-prev"></div>
+                <div class="hi-next"></div>
+                <ul>
+                    <li>
+                        <img src="images/pic1.jpg" alt="">
+                    </li>
+                    <li>
+                        <img src="images/pic2.jpg" alt="">
+                    </li>
+                    <li>
+                        <img src="images/pic3.jpg" alt="">
+                    </li>
+                    <li>
+                            <img src="images/pic6.jpg" alt="">
+                        </li>
+                    <li>
+                        <img src="images/pic4.jpg" alt="">
+                    </li>
+                    <li>
+                        <img src="images/pic5.jpg" alt="">
+                    </li>
+                    <li>
+                        <img src="images/pic6.jpg" alt="">
+                    </li>
+                </ul>
+                <div class="sub-head"></div>
+               
+            </div>
+  
+        </section>
+        <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+        <script src="js/jquery.hislide.js"></script>
+        <script>  $('.slide').hiSlide();</script>
+
+    <section class="workers" id="Kontakt">
+        <div class="container">
+            <div class="row1">
+                <div class="col-sm-12 text-center">
+                    <h2>KONTAKT</h2>
+                   
+                </div>  
+            </div>
+
+            <div class="row">
+                <div class="col-sm-4" >
+                    <div class="intro-block">
+                        <div class="intro-icon"><i class="fab fa-facebook-square fa-2x"></i></div>
+                        <p id="facebook" onclick="facebookCite(this)">Gilla vår Facebook-sida!</p>
+                    </div>
+                </div>
+
+            
+                    <div class="col-sm-4">
+                        <div class="intro-block">
+                            <div class="intro-icon1"><i class="fas fa-envelope fa-2x"></i></div>
+                            <p>Info@infralink.se <br>
+                                ekonomi@infralink.se</p>
+                        </div>
+                    </div>
+    
+                
+                        <div class="col-sm-4" >
+                            <div class="intro-block">
+                                <div class="intro-icon"><i class="fab fa-linkedin fa-2x"></i> </div>                             </span>
+                                <p id="linkedin" onclick="linkedinCite(this)">Besök oss på Linkedin</p>
+                            </div>
+                        </div>
+
+        
+                    </div>
+                </section>
+        <section class="workers_info">
+            <div class="row">
+                <div class="col-sm">
+                    <div class="persons">
+                       <div class="intro-person"> <img class="pic" src="images/Marcus.jpg"></img></div>
+                       <h3>Marcus Olivetti Jokiniemi</h3>
+                       <p>VD, Delägare, Projekt <br>
+                          073-659 53 70 <br>
+                          marcus.jokiniemi@infralink.se</p>
+                        
+                    </div>
+                </div>
+                <div class="col-sm">
+                    <div class="persons">
+                       <div class="intro-person"> <img class="pic" src="images/Victor.jpg"></img></div>
+                       <h3>Victor Alm</h3>
+                       <p>Delägare, Projekt <br>
+                          076-594 93 03 <br>
+                          victor.alm@infralink.se </p>
+                        
+                    </div>
+                </div>
+
+                <div class="col-sm">
+                        <div class="persons">
+                           <div class="intro-person"> <img class="pic" src="images/Peder.jpg"></img></div>
+                           <h3>Peder Hedberg</h3>
+                           <p>Delägare, Projekt <br>
+                              070-890 94 30 <br>
+                              peder.hedberg@infralink.se </p>
+                            
+                        </div>
+                    </div>
+
+                    <div class="col-sm">
+                            <div class="persons">
+                               <div class="intro-person"> <img class="pic" src="images/Carina.jpg"></img></div>
+                               <h3>Carina Persson</h3>
+                               <p>Delägare, Ekonomi <br>
+                                   070-222 74 52 <br>
+                                   carina.persson@infralink.se </p>
+                                
+                            </div>
+                        </div>
+
+                        <div class="col-sm">
+                                <div class="persons">
+                                   <div class="intro-person"> <img class="pic" src="images/Johan.jpg"></img></div>
+                                   <h3>Johan Rosenborg</h3>
+                                   <p>Delägare, Resursplanering <br>
+                                      073-761 67 61 <br>
+                                      johan.rosenborg@infralink.se</p>
+                                    
+                                </div>
+                            </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section class="pictures" id="pictures">
+            <div class= "thePics"> <img class="sign" src="images/InfraLink_sign.jpg">
+    
+            </div>
+    
+    
+        </section>
+
+</body>
+
+</html>
