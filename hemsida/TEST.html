@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Infralink - Samhällsbyggare för framtiden</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700;900&display=swap" rel="stylesheet">
+    
+    <style>
+        /* --- DESIGN SYSTEM (Bäckströms-inspirerat) --- */
+        :root {
+            --primary-black: #1a1a1a;    
+            --primary-white: #ffffff;
+            --accent-yellow: #f59e0b;    
+            --overlay-dark: rgba(0, 0, 0, 0.6);
+            --text-grey: #4a4a4a;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            color: var(--primary-black);
+            line-height: 1.5;
+            background-color: #f4f4f4;
+        }
+
+        a { text-decoration: none; color: inherit; transition: 0.3s; }
+        ul { list-style: none; }
+        img { width: 100%; height: auto; display: block; }
+
+        /* --- HEADER & MENY --- */
+        nav {
+            background: var(--primary-white);
+            height: 80px;
+            padding: 0 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid #eee;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            height: 100%;
+        }
+
+        .logo-img {
+            height: 60px;
+            width: auto;
+            object-fit: contain;
+        }
+
+        .nav-links { display: flex; gap: 2.5rem; }
+        .nav-links a { 
+            font-weight: 700; 
+            font-size: 1rem; 
+            text-transform: uppercase;
+            color: var(--primary-black);
+            letter-spacing: 0.5px;
+        }
+        .nav-links a:hover { color: var(--accent-yellow); }
+
+        .header-contact {
+            font-size: 0.9rem;
+            font-weight: 700;
+            display: flex;
+            gap: 1rem;
+        }
+        .header-phone { color: var(--accent-yellow); }
+
+        /* --- HERO SEKTION --- */
+        .hero {
+            position: relative;
+            height: 85vh;
+            background: url('bakgrund.png?auto=format&fit=crop&w=1920&q=80') center/cover no-repeat;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(0,0,0,0.5);
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            color: var(--primary-white);
+            max-width: 900px;
+            padding: 0 20px;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.5);
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            font-weight: 300;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        .btn-outline {
+            border: 2px solid var(--primary-white);
+            color: var(--primary-white);
+            padding: 1rem 2.5rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            display: inline-block;
+        }
+        .btn-outline:hover {
+            background: var(--primary-white);
+            color: var(--primary-black);
+        }
+
+        /* --- TJÄNSTER (GRID) --- */
+        .services-section {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr); 
+            width: 100%;
+        }
+
+        .service-tile {
+            position: relative;
+            height: 400px;
+            overflow: hidden;
+            display: flex;
+            align-items: flex-end;
+            text-decoration: none;
+            background-color: #333;
+        }
+
+        .service-tile img {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+            opacity: 0.8;
+        }
+
+        .service-tile:hover img {
+            transform: scale(1.1);
+            opacity: 0.6;
+        }
+
+        .service-overlay {
+            position: relative;
+            z-index: 2;
+            padding: 2rem;
+            width: 100%;
+            background: linear-gradient(transparent, rgba(0,0,0,0.9));
+        }
+
+        .service-tile h3 {
+            color: var(--primary-white);
+            font-size: 1.5rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            margin-bottom: 0.5rem;
+            border-left: 4px solid var(--accent-yellow);
+            padding-left: 10px;
+        }
+
+        .service-tile p {
+            color: #ddd;
+            font-size: 0.9rem;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: 0.3s;
+            max-height: 0;
+        }
+
+        .service-tile:hover p {
+            opacity: 1;
+            transform: translateY(0);
+            max-height: 100px;
+        }
+
+        /* --- OM OSS --- */
+        .intro-section {
+            background: var(--primary-white);
+            padding: 6rem 10%;
+            text-align: center;
+        }
+        .intro-section h2 {
+            font-size: 2.5rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            margin-bottom: 1.5rem;
+            color: var(--primary-black);
+        }
+        .intro-section p {
+            max-width: 800px;
+            margin: 0 auto;
+            color: var(--text-grey);
+            font-size: 1.1rem;
+        }
+
+        /* --- MEDARBETARE --- */
+        .team-section {
+            padding: 5rem 10%;
+            background-color: #f4f4f4;
+        }
+        .section-header { 
+            margin-bottom: 3rem; 
+            border-bottom: 2px solid #ddd; 
+            padding-bottom: 1rem; 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: flex-end; 
+        }
+        .section-header h2 { 
+            font-size: 2rem; 
+            font-weight: 900; 
+            text-transform: uppercase; 
+        }
+
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .team-card {
+            background: var(--primary-white);
+            border-bottom: 4px solid var(--accent-yellow);
+            overflow: hidden;
+        }
+
+        .team-img {
+            height: 300px;
+            width: 100%;
+            background-color: #ddd;
+            object-fit: cover;
+        }
+
+        .team-info { 
+            padding: 1.5rem; 
+        }
+        .team-name { 
+            font-weight: 800; 
+            font-size: 1.1rem; 
+            margin-bottom: 0.2rem; 
+            display: block; 
+        }
+        .team-role { 
+            color: var(--accent-yellow); 
+            font-weight: 700; 
+            font-size: 0.9rem; 
+            text-transform: uppercase; 
+            display: block; 
+            margin-bottom: 1rem; 
+        }
+        .team-contact a { 
+            display: block; 
+            font-size: 0.9rem; 
+            color: #555; 
+            margin-bottom: 0.3rem; 
+        }
+        .team-contact a:hover { 
+            color: var(--primary-black); 
+            text-decoration: underline; 
+        }
+
+        /* --- KONTAKT --- */
+        .contact-cta {
+            background-color: var(--primary-black);
+            color: var(--primary-white);
+            padding: 5rem 10%;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+        }
+
+        .form-container input, .form-container textarea {
+            width: 100%;
+            padding: 1rem;
+            margin-bottom: 1rem;
+            background: #2a2a2a;
+            border: 1px solid #444;
+            color: white;
+            font-family: 'Roboto', sans-serif;
+        }
+        .form-container button {
+            background: var(--accent-yellow);
+            color: var(--primary-black);
+            padding: 1rem 2rem;
+            border: none;
+            font-weight: 800;
+            text-transform: uppercase;
+            cursor: pointer;
+        }
+
+        /* --- FOOTER --- */
+        footer {
+            background: #111;
+            color: #777;
+            padding: 2rem 5%;
+            font-size: 0.8rem;
+            border-top: 1px solid #222;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        /* --- MOBIL --- */
+        @media (max-width: 900px) {
+            .services-section { grid-template-columns: 1fr 1fr; }
+            .hero h1 { font-size: 2.5rem; }
+            .nav-links { display: none; }
+            .contact-cta { grid-template-columns: 1fr; }
+        }
+        @media (max-width: 500px) {
+            .services-section { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- HEADER -->
+    <nav>
+        <div class="logo-container">
+            <img src="Infralink_Logo_Svart.png" alt="Infralink Logo" class="logo-img">
+        </div>
+        <div class="nav-links">
+            <a href="#">Hem</a>
+            <a href="#tjanster">Verksamhet</a>
+            <a href="#team">Medarbetare</a>
+            <a href="#contact">Kontakt</a>
+        </div>
+<!--        <div class="header-contact">
+            <a href="tel:0736595370" class="header-phone">073-659 53 70</a>
+        </div>
+-->
+    </nav>
+
+    <!-- HERO -->
+    <header class="hero">
+        <div class="hero-content">
+            <h1>Er nya leverantör av <br><span>Projektlösningar</span></h1>
+            <p>Vi bygger ett hållbart Sverige genom kompetens inom järnväg, mark och elektrifiering.</p>
+            <a href="#contact" class="btn-outline">Kontakta oss</a>
+        </div>
+    </header>
+
+    <!-- INTRO -->
+    <section class="intro-section">
+        <h2>En komplett partner</h2>
+        <p>Infralink grundades 2019 med ambitionen att bli marknadens vassaste partner för alla med behov av kompetens inom anläggning, mark, spår och infrastruktur. Vi kombinerar det lilla företagets flexibilitet med det stora företagets kapacitet.</p>
+    </section>
+
+    <!-- TJÄNSTER -->
+    <div id="tjanster" class="services-section">
+        
+        <a href="#" class="service-tile">
+            <img src="jarnvagospar.png?auto=format&fit=crop&w=800&q=80" alt="Järnväg">
+            <div class="service-overlay">
+                <h3>Järnväg & Spår</h3>
+                <p>Specialistkompetens inom underhåll och nybyggnation.</p>
+            </div>
+        </a>
+
+        <a href="#" class="service-tile">
+            <img src="markoanläggning.png?auto=format&fit=crop&w=800&q=80" alt="Mark & Anläggning">
+            <div class="service-overlay">
+                <h3>Mark & Anläggning</h3>
+                <p>Schaktning, grundläggning och finplanering.</p>
+            </div>
+        </a>
+
+        <a href="#" class="service-tile">
+            <img src="laddstolpar.png?auto=format&fit=crop&w=800&q=80" alt="Laddstolpar">
+            <div class="service-overlay">
+                <h3>Laddstolpar</h3>
+                <p>Elektrifiering av biltrafiken för företag och BRF.</p>
+            </div>
+        </a>
+
+        <a href="#" class="service-tile">
+            <img src="maskinuthyrning.png?auto=format&fit=crop&w=800&q=80" alt="Maskinuthyrning">
+            <div class="service-overlay">
+                <h3>Maskinresurser</h3>
+                <p>Uthyrning av maskiner och förare.</p>
+            </div>
+        </a>
+    </div>
+
+    <!-- MEDARBETARE -->
+    <section id="team" class="team-section">
+        <div class="section-header">
+            <h2>Våra Medarbetare</h2>
+            <a href="#contact" style="font-weight: 700; color:var(--primary-black);">Kontakta oss →</a>
+        </div>
+
+        <div class="team-grid">
+            
+            <!-- Marcus -->
+            <div class="team-card">
+                <img src="marcus.png" class="team-img" alt="Marcus">
+                <div class="team-info">
+                    <span class="team-name">Marcus Olivetti Jokiniemi</span>
+                    <span class="team-role">VD, Projekt</span>
+                    <div class="team-contact">
+                        <a href="tel:0700000000">070-000 00 00</a>
+                        <a href="mailto:marcus.jokiniemi@infralink.se">marcus.jokiniemi@infralink.se</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Peder -->
+            <div class="team-card">
+                <img src="peder.png" class="team-img" alt="Peder">
+                <div class="team-info">
+                    <span class="team-name">Peder Hedberg</span>
+                    <span class="team-role">Projekt & Maskin</span>
+                    <div class="team-contact">
+                        <a href="tel:0700000000">070-000 00 00</a>
+                        <a href="mailto:peder.hedberg@infralink.se">peder.hedberg@infralink.se</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Kent -->
+            <div class="team-card">
+                <img src="kent.png" class="team-img" alt="Kent">
+                <div class="team-info">
+                    <span class="team-name">Kent Lindström</span>
+                    <span class="team-role">Platschef, Betong klass 1-U</span>
+                    <div class="team-contact">
+                        <a href="tel:0700000000">070-000 00 00</a>
+                        <a href="mailto:kent.lindstrom@infralink.se">kent.lindstrom@infralink.se</a>
+                    </div>
+                </div>
+            </div>
+
+
+            <!-- Anders -->
+            <div class="team-card">
+                <img src="anders.png" class="team-img" alt="Anders">
+                <div class="team-info">
+                    <span class="team-name">Anders Johansson</span>
+                    <span class="team-role">Platschef, Entreprenadingenjör</span>
+                    <div class="team-contact">
+                        <a href="tel:0700000000">070-000 00 00</a>
+                        <a href="mailto:anders.johansson@infralink.se">anders.johansson@infralink.se</a>
+                    </div>
+                </div>
+            </div>
+
+
+            <!-- Jonathan -->
+            <div class="team-card">
+                <img src="jonathan.png" class="team-img" alt="Jonathan">
+                <div class="team-info">
+                    <span class="team-name">Jonathan Celiner</span>
+                    <span class="team-role">Entreprenadingenjör, platschef</span>
+                    <div class="team-contact">
+                        <a href="tel:0700000000">070-000 00 00</a>
+                        <a href="mailto:jonathan.celinder@infralink.se">jonathan.celinder@infralink.se</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Johanna -->
+            <div class="team-card">
+                <img src="johanna.png" class="team-img" alt="Johanna">
+                <div class="team-info">
+                    <span class="team-name">Johanna Hägnestrand</span>
+                    <span class="team-role">Administration, HR</span>
+                    <div class="team-contact">
+                        <a href="tel:0700000000">070-000 00 00</a>
+                        <a href="mailto:johanna.hagnestrand@infralink.se">johanna.hagnestrand@infralink.se</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Lasse -->
+            <div class="team-card">
+                <img src="lasse.jpg" class="team-img" alt="Lasse">
+                <div class="team-info">
+                    <span class="team-name">Lasse Hedberg</span>
+                    <span class="team-role">Projektstöd</span>
+                    <div class="team-contact">
+                        <a href="tel:0700000000">070-000 00 00</a>
+                        <a href="mailto:lasse.hedberg@infralink.se">lasse.hedberg@infralink.se</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Linus -->
+            <div class="team-card">
+                <img src="linus.png" class="team-img" alt="Linus">
+                <div class="team-info">
+                    <span class="team-name">Linus Liljefors</span>
+                    <span class="team-role">Platschef</span>
+                    <div class="team-contact">
+                        <a href="tel:0700000000">070-000 00 00</a>
+                        <a href="mailto:linus.liljefors@infralink.se">linus.liljefors@infralink.se</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Lilja -->
+            <div class="team-card">
+                <img src="lilja.png" class="team-img" alt="Lilja">
+                <div class="team-info">
+                    <span class="team-name">Magnus Lilja</span>
+                    <span class="team-role">YA, mark</span>
+                    <div class="team-contact">
+                        <a href="tel:0700000000">070-000 00 00</a>
+                        <a href="mailto:magnus.lilja@infralink.se">magnus.lilja@infralink.se</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Shukri -->
+            <div class="team-card">
+                <img src="shukri.png" class="team-img" alt="Shukri">
+                <div class="team-info">
+                    <span class="team-name">Shukri Jamil</span>
+                    <span class="team-role">Arbetare</span>
+                    <div class="team-contact">
+                        <a href="tel:0700000000">070-000 00 00</a>
+                        <a href="mailto:shukri.jamil@infralink.se">shukri.jamil@infralink.se</a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- KONTAKT -->
+    <section id="contact" class="contact-cta">
+        <div>
+            <h2 style="font-size: 2.5rem; text-transform: uppercase; margin-bottom: 1rem;">Hör av dig</h2>
+            <p style="opacity: 0.7; margin-bottom: 2rem;">Infralink i Sverige AB<br>Lilla Garn 15<br>186 97 Brottby</p>
+            <p style="font-weight: 700; color: var(--accent-yellow);">info@infralink.se</p>
+        </div>
+
+        <div class="form-container">
+            <form action="mailto:info@infralink.se" method="post" enctype="text/plain">
+                <input type="text" name="namn" placeholder="Namn / Företag" required>
+                <input type="email" name="epost" placeholder="E-post" required>
+                <textarea name="meddelande" rows="4" placeholder="Vad kan vi hjälpa er med?"></textarea>
+                <button type="submit">Skicka förfrågan</button>
+            </form>
+        </div>
+    </section>
+
+    <footer>
+        <div>&copy; 2024 Infralink i Sverige AB</div>
+        <div>
+            <a href="#" style="margin-left: 1rem;">Facebook</a>
+            <a href="#" style="margin-left: 1rem;">LinkedIn</a>
+            <a href="#" style="margin-left: 1rem;">Instagram</a>
+        </div>
+    </footer>
+
+</body>
+</html>
